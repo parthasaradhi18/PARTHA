@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 5%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 0%;
+
+    /* Accent color: #ef4444 (bold red glow) */
+    --secondary: 0 84% 60%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 0 84% 60%;
+
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    /* Custom premium dark gradient requested by user */
+    background: radial-gradient(125% 125% at 50% 100%, #000000 40%, #2b0707 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+}
+
+/* Glassmorphism utilities */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-card {
+  @apply glass rounded-2xl p-6 transition-all duration-300;
+}
+
+.glass-card:hover {
+  border-color: rgba(239, 68, 68, 0.3);
+  /* Red glow effect */
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.1);
+  transform: translateY(-2px);
+}
+
+.text-gradient {
+  background-image: linear-gradient(to right, #ffffff, #a3a3a3);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
