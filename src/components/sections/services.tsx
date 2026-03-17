@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 import { Briefcase, Layout, Search, Calendar, MonitorSmartphone, ShoppingCart, RefreshCw, Code } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
 
@@ -60,7 +59,7 @@ export function ServicesSection() {
             </Reveal>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {services.map((service, idx) => (
+                {services.map((service) => (
                     <Reveal key={service.title} direction="up">
                         <div className="group relative bg-[#111] border border-white/5 rounded-3xl p-8 hover:bg-[#151515] transition-colors h-full">
                             {/* Subtle glow on hover */}
