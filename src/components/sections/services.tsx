@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Briefcase, Layout, Search, Calendar, MonitorSmartphone, ShoppingCart, RefreshCw, Code } from "lucide-react";
+import { Reveal } from "@/components/ui/reveal";
 
 const services = [
     {
@@ -50,35 +51,32 @@ const services = [
 export function ServicesSection() {
     return (
         <section className="py-24 max-w-7xl mx-auto px-6">
-            <div className="text-center mb-16">
-                <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                    What I <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-purple-500">Provide</span>
-                </h2>
-            </div>
+            <Reveal direction="down">
+                <div className="text-center mb-16">
+                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                        What I <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-purple-500">Provide</span>
+                    </h2>
+                </div>
+            </Reveal>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {services.map((service, idx) => (
-                    <motion.div
-                        key={service.title}
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: idx * 0.1 }}
-                        className="group relative bg-[#111] border border-white/5 rounded-3xl p-8 hover:bg-[#151515] transition-colors"
-                    >
-                        {/* Subtle glow on hover */}
-                        <div className="absolute inset-0 bg-red-500/0 group-hover:bg-red-500/5 rounded-3xl transition-colors duration-500 pointer-events-none" />
+                    <Reveal key={service.title} direction="up">
+                        <div className="group relative bg-[#111] border border-white/5 rounded-3xl p-8 hover:bg-[#151515] transition-colors h-full">
+                            {/* Subtle glow on hover */}
+                            <div className="absolute inset-0 bg-red-500/0 group-hover:bg-red-500/5 rounded-3xl transition-colors duration-500 pointer-events-none" />
 
-                        <div className="mb-6 bg-white/5 w-16 h-16 rounded-2xl flex items-center justify-center">
-                            {service.icon}
-                        </div>
-                        <h3 className="text-xl font-bold text-white mb-3 tracking-tight">{service.title}</h3>
-                        <p className="text-white/60 text-sm leading-relaxed mb-8">{service.description}</p>
+                            <div className="mb-6 bg-white/5 w-16 h-16 rounded-2xl flex items-center justify-center">
+                                {service.icon}
+                            </div>
+                            <h3 className="text-xl font-bold text-white mb-3 tracking-tight">{service.title}</h3>
+                            <p className="text-white/60 text-sm leading-relaxed mb-8">{service.description}</p>
 
-                        <div className="mt-auto flex items-center text-sm font-medium text-white/80 group-hover:text-red-400 transition-colors cursor-pointer">
-                            Learn more <span className="ml-2 transition-transform group-hover:translate-x-1">→</span>
+                            <div className="mt-auto flex items-center text-sm font-medium text-white/80 group-hover:text-red-400 transition-colors cursor-pointer">
+                                Learn more <span className="ml-2 transition-transform group-hover:translate-x-1">→</span>
+                            </div>
                         </div>
-                    </motion.div>
+                    </Reveal>
                 ))}
             </div>
         </section>

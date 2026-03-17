@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, Plus } from "lucide-react";
 import { FaReact, FaNodeJs, FaHtml5, FaCss3Alt } from "react-icons/fa";
 import { SiNextdotjs, SiTailwindcss, SiMongodb, SiFramer } from "react-icons/si";
+import { Reveal } from "@/components/ui/reveal";
 
 const projects = [
     {
@@ -141,53 +142,55 @@ export function ProjectsSection() {
 
     return (
         <section id="projects" className="py-24 max-w-7xl mx-auto px-6" ref={containerRef}>
-            <div className="text-center mb-16 space-y-4">
-                <p className="text-sm font-medium tracking-widest text-white/50 uppercase">Code Meets Creativity</p>
-                <div className="flex justify-center items-center gap-4">
-                    <h2 className="text-4xl md:text-5xl font-bold text-white">
-                        Crafted <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-600">Projects</span>
-                    </h2>
+            <Reveal direction="down">
+                <div className="text-center mb-16 space-y-4">
+                    <p className="text-sm font-medium tracking-widest text-white/50 uppercase">Code Meets Creativity</p>
+                    <div className="flex justify-center items-center gap-4">
+                        <h2 className="text-4xl md:text-5xl font-bold text-white">
+                            Crafted <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-600">Projects</span>
+                        </h2>
+                    </div>
                 </div>
-            </div>
+            </Reveal>
 
             {/* Desktop View */}
             <div className="hidden lg:flex flex-row gap-20 items-start relative w-full">
                 {/* Left Side: Scrolling Image Cards */}
                 <div className="w-full lg:w-1/2 flex flex-col gap-24 py-[10vh]">
                     {projects.map((project, idx) => (
-                        <div
-                            key={project.id}
-                            className={`project-scroll-item min-h-[60vh] flex items-center transition-opacity duration-500 ${idx === activeProject ? 'opacity-100' : 'opacity-30'}`}
-                        >
-                            <div className={`w-full aspect-[4/3] rounded-[2rem] overflow-hidden relative group border border-white/10 ${project.bgAccent.replace('bg-', 'bg-').replace('500', '900/40')}`}>
-                                {/* Background Gradient Blur inside the card */}
-                                <div className={`absolute -inset-20 bg-gradient-to-br ${project.color} rounded-full blur-3xl opacity-50`} />
+                        <Reveal key={project.id} direction={idx % 2 === 0 ? "left" : "right"}>
+                            <div
+                                className={`project-scroll-item min-h-[60vh] flex items-center transition-opacity duration-500 ${idx === activeProject ? 'opacity-100' : 'opacity-30'}`}
+                            >
+                                <div className={`w-full aspect-[4/3] rounded-[2rem] overflow-hidden relative group border border-white/10 ${project.bgAccent.replace('bg-', 'bg-').replace('500', '900/40')}`}>
+                                    {/* Background Gradient Blur inside the card */}
+                                    <div className={`absolute -inset-20 bg-gradient-to-br ${project.color} rounded-full blur-3xl opacity-50`} />
 
-                                <div className="relative z-10 p-8 md:p-10 h-full flex flex-col">
-                                    <div className="flex justify-between items-start mb-8">
-                                        <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight max-w-[80%]">
-                                            {project.imageHeading}
-                                        </h3>
-                                        <div className="w-12 h-12 shrink-0 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-md border border-white/20 hover:bg-white/20 transition-colors cursor-pointer">
-                                            <ExternalLink className="w-5 h-5 text-white" />
+                                    <div className="relative z-10 p-8 md:p-10 h-full flex flex-col">
+                                        <div className="flex justify-between items-start mb-8">
+                                            <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight max-w-[80%]">
+                                                {project.imageHeading}
+                                            </h3>
+                                            <div className="w-12 h-12 shrink-0 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-md border border-white/20 hover:bg-white/20 transition-colors cursor-pointer">
+                                                <ExternalLink className="w-5 h-5 text-white" />
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    {/* Mockup Placeholder */}
-                                    <div className="mt-auto w-full h-[60%] bg-[#0a0a0a] rounded-t-xl border border-white/10 border-b-0 shadow-2xl relative overflow-hidden flex items-center justify-center group-hover:translate-y-2 transition-transform duration-500">
-                                        <div className="absolute top-0 left-0 right-0 h-8 bg-white/5 border-b border-white/10 flex items-center px-4 gap-2">
-                                            <div className="w-2.5 h-2.5 rounded-full bg-red-400/50"></div>
-                                            <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/50"></div>
-                                            <div className="w-2.5 h-2.5 rounded-full bg-green-400/50"></div>
-                                        </div>
-                                        <div className="text-white/20 font-bold text-xl mt-4 px-6 text-center">
-                                            {project.title} <br /> <span className="text-sm font-normal">Preview Template</span>
+                                        {/* Mockup Placeholder */}
+                                        <div className="mt-auto w-full h-[60%] bg-[#0a0a0a] rounded-t-xl border border-white/10 border-b-0 shadow-2xl relative overflow-hidden flex items-center justify-center group-hover:translate-y-2 transition-transform duration-500">
+                                            <div className="absolute top-0 left-0 right-0 h-8 bg-white/5 border-b border-white/10 flex items-center px-4 gap-2">
+                                                <div className="w-2.5 h-2.5 rounded-full bg-red-400/50"></div>
+                                                <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/50"></div>
+                                                <div className="w-2.5 h-2.5 rounded-full bg-green-400/50"></div>
+                                            </div>
+                                            <div className="text-white/20 font-bold text-xl mt-4 px-6 text-center">
+                                                {project.title} <br /> <span className="text-sm font-normal">Preview Template</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-                        </div>
+                        </Reveal>
                     ))}
                 </div>
 

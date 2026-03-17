@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Mail, Phone } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { Reveal } from "@/components/ui/reveal";
 
 export function HeroSection() {
     return (
@@ -17,50 +18,44 @@ export function HeroSection() {
 
             <div className="relative z-10 w-full max-w-5xl mx-auto text-center flex flex-col items-center">
                 {/* ===== Heading ===== */}
-                <div className="text-center mb-6 sm:mb-10 md:mb-12 lg:mb-16 xl:mb-10 px-1 sm:px-2">
-                    <motion.h1
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.1 }}
-                        className="text-[1.75rem] sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl font-bold text-white leading-tight"
-                    >
-                        Turning Ideas Into
-                        <br />
-                        beautiful{" "}
-                        <span className="italic font-normal text-transparent bg-clip-text bg-gradient-to-b from-zinc-600 to-white">
-                            Digital Experiences
-                        </span>
-                    </motion.h1>
-                </div>
+                <Reveal direction="down">
+                    <div className="text-center mb-6 sm:mb-10 md:mb-12 lg:mb-16 xl:mb-10 px-1 sm:px-2">
+                        <h1 className="text-[1.75rem] sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl font-bold text-white leading-tight">
+                            Turning Ideas Into
+                            <br />
+                            beautiful{" "}
+                            <span className="italic font-normal text-transparent bg-clip-text bg-gradient-to-b from-zinc-600 to-white">
+                                Digital Experiences
+                            </span>
+                        </h1>
+                    </div>
+                </Reveal>
 
                 {/* ===== Intro Text ===== */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    className="flex relative flex-col items-center justify-center gap-1.5 sm:gap-3 md:flex-row mb-[88px] md:mb-24 scale-90 sm:scale-100"
-                >
-                    <p className="text-sm sm:text-lg md:text-xl lg:text-2xl text-white/90">Hello, I&apos;m</p>
+                <Reveal direction="up">
+                    <div className="flex relative flex-col items-center justify-center gap-1.5 sm:gap-3 md:flex-row mb-[88px] md:mb-24 scale-90 sm:scale-100">
+                        <p className="text-sm sm:text-lg md:text-xl lg:text-2xl text-white/90">Hello, I&apos;m</p>
 
-                    <div className="bg-red-600 px-3 sm:px-5 py-1 shadow-[0_0_20px_rgba(239,68,68,0.4)]">
-                        <span className="text-white font-semibold tracking-wide block text-xs sm:text-base">
-                            Maddela Partha Saradhi
-                        </span>
+                        <div className="bg-red-600 px-3 sm:px-5 py-1 shadow-[0_0_20px_rgba(239,68,68,0.4)]">
+                            <span className="text-white font-semibold tracking-wide block text-xs sm:text-base">
+                                Maddela Partha Saradhi
+                            </span>
+                        </div>
+
+                        <div className="group block md:block cursor-pointer relative h-7 w-7 sm:h-10 sm:w-10 md:h-12 md:w-12 lg:h-14 lg:w-14 shrink-0 rounded-full overflow-hidden border-2 border-white/20 my-0.5 sm:my-2 md:my-0 bg-[#111] flex items-center justify-center text-white/50 font-bold text-xs md:text-lg">
+                            <Image
+                                src="/PARTHA.jpeg"
+                                alt="Partha"
+                                fill
+                                className="object-cover"
+                                sizes="(max-width: 640px) 28px, (max-width: 768px) 40px, (max-width: 1024px) 48px, 56px"
+                                priority
+                            />
+                        </div>
+
+                        <p className="text-xs sm:text-base md:text-xl lg:text-2xl text-white/90">A Web Developer</p>
                     </div>
-
-                    <div className="group block md:block cursor-pointer relative h-7 w-7 sm:h-10 sm:w-10 md:h-12 md:w-12 lg:h-14 lg:w-14 shrink-0 rounded-full overflow-hidden border-2 border-white/20 my-0.5 sm:my-2 md:my-0 bg-[#111] flex items-center justify-center text-white/50 font-bold text-xs md:text-lg">
-                        <Image
-                            src="/PARTHA.jpeg"
-                            alt="Partha"
-                            fill
-                            className="object-cover"
-                            sizes="(max-width: 640px) 28px, (max-width: 768px) 40px, (max-width: 1024px) 48px, 56px"
-                            priority
-                        />
-                    </div>
-
-                    <p className="text-xs sm:text-base md:text-xl lg:text-2xl text-white/90">A Web Developer</p>
-                </motion.div>
+                </Reveal>
             </div>
 
             {/* ===== Bottom Dome ===== */}

@@ -2,6 +2,7 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Reveal } from "@/components/ui/reveal";
 
 const educationData = [
     {
@@ -94,57 +95,60 @@ export function EducationSection() {
 
     return (
         <section className="py-24 max-w-7xl mx-auto px-6" ref={containerRef}>
-            <div className="text-center mb-16 space-y-4">
-                <p className="text-sm font-medium tracking-widest text-white/50 uppercase">Academic Journey</p>
-                <div className="flex justify-center items-center gap-4">
-                    <h2 className="text-4xl md:text-5xl font-bold text-white">
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-500">Education</span>
-                    </h2>
+            <Reveal direction="down">
+                <div className="text-center mb-16 space-y-4">
+                    <p className="text-sm font-medium tracking-widest text-white/50 uppercase">Academic Journey</p>
+                    <div className="flex justify-center items-center gap-4">
+                        <h2 className="text-4xl md:text-5xl font-bold text-white">
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-500">Education</span>
+                        </h2>
+                    </div>
                 </div>
-            </div>
+            </Reveal>
 
             <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start relative ml-2 lg:ml-0">
 
                 {/* Left Side: Scrolling Timeline Headers */}
                 <div className="w-full lg:w-1/2 flex flex-col gap-24 py-[10vh] border-l border-white/10 pl-6 lg:pl-12">
                     {educationData.map((item, idx) => (
-                        <div
-                            key={item.id}
-                            className={`edu-scroll-item min-h-[40vh] flex items-center transition-all duration-500 relative ${idx === activeIndex ? "opacity-100 scale-100" : "opacity-30 scale-95"
-                                }`}
-                        >
-                            {/* Timeline Marker visible on all devices now */}
-                            <div className="absolute left-[calc(-1.5rem-6.5px)] lg:left-[calc(-3rem-6.5px)] top-1/2 -translate-y-1/2">
-                                {idx === activeIndex ? (
-                                    <div className="relative flex h-3 w-3">
-                                        <span className={`animate-ping absolute inline-flex h-full w-full rounded-full ${item.bgAccent.replace('900/40', '500')} opacity-75`}></span>
-                                        <span className={`relative inline-flex rounded-full h-3 w-3 ${item.bgAccent.replace('900/40', '500')} shadow-[0_0_10px_currentColor]`}></span>
-                                    </div>
-                                ) : (
-                                    <div className="flex bg-[#111] h-3 w-3 rounded-full border-2 border-white/30"></div>
-                                )}
-                            </div>
+                        <Reveal key={item.id} direction={idx % 2 === 0 ? "left" : "right"}>
+                            <div
+                                className={`edu-scroll-item min-h-[40vh] flex items-center transition-all duration-500 relative ${idx === activeIndex ? "opacity-100 scale-100" : "opacity-30 scale-95"
+                                    }`}
+                            >
+                                {/* Timeline Marker visible on all devices now */}
+                                <div className="absolute left-[calc(-1.5rem-6.5px)] lg:left-[calc(-3rem-6.5px)] top-1/2 -translate-y-1/2">
+                                    {idx === activeIndex ? (
+                                        <div className="relative flex h-3 w-3">
+                                            <span className={`animate-ping absolute inline-flex h-full w-full rounded-full ${item.bgAccent.replace('900/40', '500')} opacity-75`}></span>
+                                            <span className={`relative inline-flex rounded-full h-3 w-3 ${item.bgAccent.replace('900/40', '500')} shadow-[0_0_10px_currentColor]`}></span>
+                                        </div>
+                                    ) : (
+                                        <div className="flex bg-[#111] h-3 w-3 rounded-full border-2 border-white/30"></div>
+                                    )}
+                                </div>
 
-                            <div className={`w-full p-8 md:p-10 rounded-[2rem] border border-white/10 relative overflow-hidden bg-[#111]`}>
-                                {/* Background Gradient Blur */}
-                                <div className={`absolute -inset-20 bg-gradient-to-br ${item.color} rounded-full blur-3xl opacity-20 pointer-events-none transition-opacity duration-1000 ${idx === activeIndex ? 'opacity-40' : 'opacity-10'}`} />
+                                <div className={`w-full p-8 md:p-10 rounded-[2rem] border border-white/10 relative overflow-hidden bg-[#111]`}>
+                                    {/* Background Gradient Blur */}
+                                    <div className={`absolute -inset-20 bg-gradient-to-br ${item.color} rounded-full blur-3xl opacity-20 pointer-events-none transition-opacity duration-1000 ${idx === activeIndex ? 'opacity-40' : 'opacity-10'}`} />
 
-                                <div className="relative z-10">
-                                    <span className="text-sm font-semibold tracking-wider text-white/50 mb-4 block uppercase">
-                                        {item.date}
-                                    </span>
-                                    <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight mb-4">
-                                        {item.degree}
-                                    </h3>
-                                    <div className={`inline-block px-4 py-2 ${item.bgAccent.replace('900/40', '500/10')} border border-white/5 ${item.accent} rounded-xl text-sm font-medium mb-4`}>
-                                        {item.specialization}
+                                    <div className="relative z-10">
+                                        <span className="text-sm font-semibold tracking-wider text-white/50 mb-4 block uppercase">
+                                            {item.date}
+                                        </span>
+                                        <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight mb-4">
+                                            {item.degree}
+                                        </h3>
+                                        <div className={`inline-block px-4 py-2 ${item.bgAccent.replace('900/40', '500/10')} border border-white/5 ${item.accent} rounded-xl text-sm font-medium mb-4`}>
+                                            {item.specialization}
+                                        </div>
+                                        <p className="text-white/60 text-sm md:text-base leading-relaxed">
+                                            {item.institution}
+                                        </p>
                                     </div>
-                                    <p className="text-white/60 text-sm md:text-base leading-relaxed">
-                                        {item.institution}
-                                    </p>
                                 </div>
                             </div>
-                        </div>
+                        </Reveal>
                     ))}
                 </div>
 
