@@ -16,18 +16,20 @@ export function ContactSection() {
         setErrorMessage("");
 
         try {
-            const response = await fetch("http://localhost:5000/api/contact", {
+            const submitData = new FormData();
+            submitData.append("name", formData.name);
+            submitData.append("number", formData.number);
+            submitData.append("message", formData.message);
+
+            const response = await fetch("https://script.google.com/macros/s/AKfycbxPcGygVQ2J2NeTV_6BQcgO1l-TMQ_2kz2qAepO7Grqz3iKvPSnMFPtpjxXq1B_B85OvA/exec", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(formData),
+                body: submitData,
             });
 
             const data = await response.json();
 
-            if (!response.ok) {
-                throw new Error(data.error || "Something went wrong. Please try again later.");
+            if (data.result !== 'success') {
+                throw new Error("Something went wrong. Please try again later.");
             }
 
             setStatus("success");
