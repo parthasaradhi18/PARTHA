@@ -4,14 +4,17 @@ import React, { useRef, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, Plus } from "lucide-react";
 import { FaReact, FaNodeJs, FaHtml5, FaCss3Alt } from "react-icons/fa";
-import { SiNextdotjs, SiTailwindcss, SiMongodb, SiFramer } from "react-icons/si";
+import { SiNextdotjs, SiTailwindcss, SiMongodb, SiFramer, SiPython, SiTensorflow, SiOpencv, SiFlask, SiHtml5 } from "react-icons/si";
 import { Reveal } from "@/components/ui/reveal";
+import Image from "next/image";
 
 const projects = [
     {
         id: "ms-edu",
         title: "MS Educational Services",
         type: "Admissions Consultancy Website",
+        link: "https://msedifysolutions.vercel.app/",
+        image: "/MS Edify.png",
         description: "Designed and developed a stunning portfolio website for an educational consultancy. Showcases their services, admission process with high-quality imagery and modern UI.",
         features: [
             "Premium service showcase with high-quality images",
@@ -36,6 +39,8 @@ const projects = [
         id: "scan-digital",
         title: "SCAN Digital Marketing",
         type: "Agency Portfolio Website",
+        link: "https://scandigital.vercel.app/",
+        image: "/Scandigital.png",
         description: "A highly interactive and conversion-focused agency portfolio driving digital transformation and growth strategies.",
         features: [
             "Dynamic scrollytelling and animations",
@@ -58,6 +63,8 @@ const projects = [
         id: "honey-tailoring",
         title: "Honey Tailoring",
         type: "Local Business Website",
+        link: "https://honeytailoring.vercel.app/",
+        image: "/Honey.png",
         description: "A beautiful and accessible local business website designed for a tailoring shop to increase local footfall and online appointments.",
         features: [
             "Custom catalog of tailoring services",
@@ -77,25 +84,29 @@ const projects = [
         imageHeading: "Bespoke tailoring services online.",
     },
     {
-        id: "mp-portfolio",
-        title: "Maddela Pavan Portfolio",
-        type: "Personal Portfolio Website",
-        description: "A modern, dark-themed personal portfolio showcasing projects, skills, and providing a seamless contact experience.",
+        id: "skin-lesion-system",
+        title: "Lesion Interpretation System",
+        type: "AI Healthcare Web Application",
+        description: "An intelligent web-based system that detects and classifies skin diseases using image processing and deep learning, providing confidence scores and clinical insights for preliminary diagnosis.",
         features: [
-            "Dark theme with custom color tokens",
-            "Smooth page transitions and micro-interactions",
-            "Interactive project showcase",
-            "Contact form with email integration"
+            "AI-based skin disease classification using CNN",
+            "Image preprocessing and quality analysis using OpenCV",
+            "Confidence score for prediction reliability",
+            "Lesion spread analysis for severity estimation",
+            "Clinical guidance including symptoms and prevention tips",
+            "User-friendly interface for easy image upload and results"
         ],
         tech: [
-            { name: "Next.js", icon: <SiNextdotjs /> },
-            { name: "Tailwind CSS", icon: <SiTailwindcss className="text-cyan-400" /> },
-            { name: "Framer Motion", icon: <SiFramer className="text-pink-500" /> }
+            { name: "Python", icon: <SiPython className="text-yellow-400" /> },
+            { name: "TensorFlow", icon: <SiTensorflow className="text-orange-500" /> },
+            { name: "OpenCV", icon: <SiOpencv className="text-blue-400" /> },
+            { name: "Flask", icon: <SiFlask className="text-white" /> },
+            { name: "HTML/CSS/JS", icon: <SiHtml5 className="text-orange-500" /> }
         ],
-        color: "from-purple-500/20 to-pink-500/20",
-        accent: "text-purple-500",
-        bgAccent: "bg-purple-500",
-        imageHeading: "Premium personal developer portfolio.",
+        color: "from-green-500/20 to-blue-500/20",
+        accent: "text-green-500",
+        bgAccent: "bg-green-500",
+        imageHeading: "AI-powered skin disease detection system.",
     },
 ];
 
@@ -171,21 +182,24 @@ export function ProjectsSection() {
                                             <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight max-w-[80%]">
                                                 {project.imageHeading}
                                             </h3>
-                                            <div className="w-12 h-12 shrink-0 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-md border border-white/20 hover:bg-white/20 transition-colors cursor-pointer">
+                                            <a href={project.link || "#"} target="_blank" rel="noopener noreferrer" className="w-12 h-12 shrink-0 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-md border border-white/20 hover:bg-white/20 transition-colors cursor-pointer">
                                                 <ExternalLink className="w-5 h-5 text-white" />
-                                            </div>
+                                            </a>
                                         </div>
 
                                         {/* Mockup Placeholder */}
-                                        <div className="mt-auto w-full h-[60%] bg-[#0a0a0a] rounded-t-xl border border-white/10 border-b-0 shadow-2xl relative overflow-hidden flex items-center justify-center group-hover:translate-y-2 transition-transform duration-500">
-                                            <div className="absolute top-0 left-0 right-0 h-8 bg-white/5 border-b border-white/10 flex items-center px-4 gap-2">
-                                                <div className="w-2.5 h-2.5 rounded-full bg-red-400/50"></div>
-                                                <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/50"></div>
-                                                <div className="w-2.5 h-2.5 rounded-full bg-green-400/50"></div>
-                                            </div>
-                                            <div className="text-white/20 font-bold text-xl mt-4 px-6 text-center">
-                                                {project.title} <br /> <span className="text-sm font-normal">Preview Template</span>
-                                            </div>
+                                        <div className="mt-auto w-full h-[65%] rounded-t-xl overflow-hidden relative group-hover:translate-y-2 transition-transform duration-500 shadow-2xl border border-white/10 border-b-0">
+                                            {project.image ? (
+                                                <Image src={project.image} alt={project.title} fill className="object-cover object-top" />
+                                            ) : project.link ? (
+                                                <iframe src={project.link} className="absolute inset-0 w-full h-full border-none pointer-events-none bg-white" loading="lazy" />
+                                            ) : (
+                                                <div className="w-full h-full bg-[#0a0a0a] flex items-center justify-center">
+                                                    <div className="text-white/20 font-bold text-xl px-6 text-center">
+                                                        {project.title} <br /> <span className="text-sm font-normal">Preview Template</span>
+                                                    </div>
+                                                </div>
+                                            )}
                                         </div>
                                     </div>
                                 </div>
@@ -243,13 +257,13 @@ export function ProjectsSection() {
                         "ms-edu": "bg-[#0b2942]",
                         "scan-digital": "bg-[#064e3b]",
                         "honey-tailoring": "bg-[#431407]",
-                        "mp-portfolio": "bg-[#3b0764]",
+                        "skin-lesion-system": "bg-[#064e3b]",
                     };
                     const btnMap: Record<string, string> = {
                         "ms-edu": "bg-[#1d4ed8] hover:bg-[#2563eb]",
                         "scan-digital": "bg-[#059669] hover:bg-[#10b981]",
                         "honey-tailoring": "bg-[#ea580c] hover:bg-[#f97316]",
-                        "mp-portfolio": "bg-[#9333ea] hover:bg-[#a855f7]",
+                        "skin-lesion-system": "bg-[#059669] hover:bg-[#10b981]",
                     };
                     const cardBg = bgMap[project.id] || "bg-[#064e3b]";
                     const btnBg = btnMap[project.id] || "bg-[#059669]";
@@ -272,15 +286,18 @@ export function ProjectsSection() {
                                     </div>
 
                                     {/* Mockup Placeholder */}
-                                    <div className="mt-auto w-full h-[65%] bg-[#0a0a0a] rounded-t-lg border border-white/10 border-b-0 relative overflow-hidden flex items-center justify-center">
-                                        <div className="absolute top-0 left-0 right-0 h-6 bg-white/5 border-b border-white/10 flex items-center px-3 gap-1.5">
-                                            <div className="w-2 h-2 rounded-full bg-red-400/50"></div>
-                                            <div className="w-2 h-2 rounded-full bg-yellow-400/50"></div>
-                                            <div className="w-2 h-2 rounded-full bg-green-400/50"></div>
-                                        </div>
-                                        <div className="text-white/20 font-bold text-base mt-4 px-4 text-center">
-                                            {project.title} <br /> <span className="text-xs font-normal">Preview Layout</span>
-                                        </div>
+                                    <div className="mt-auto w-full h-[65%] rounded-t-lg relative overflow-hidden flex items-center justify-center border border-white/10 border-b-0 shadow-2xl">
+                                        {project.image ? (
+                                            <Image src={project.image} alt={project.title} fill className="object-cover object-top" />
+                                        ) : project.link ? (
+                                            <iframe src={project.link} className="absolute inset-0 w-full h-full border-none pointer-events-none bg-white" loading="lazy" />
+                                        ) : (
+                                            <div className="w-full h-full bg-[#0a0a0a] flex items-center justify-center">
+                                                <div className="text-white/20 font-bold text-base px-4 text-center">
+                                                    {project.title} <br /> <span className="text-xs font-normal">Preview Layout</span>
+                                                </div>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -323,9 +340,9 @@ export function ProjectsSection() {
                                     </div>
                                 </details>
 
-                                <button className={`w-full py-3.5 rounded-xl text-white font-semibold flex items-center justify-center gap-2 transition-colors ${btnBg}`}>
+                                <a href={project.link || "#"} target="_blank" rel="noopener noreferrer" className={`w-full py-3.5 rounded-xl text-white font-semibold flex items-center justify-center gap-2 transition-colors ${btnBg}`}>
                                     View Project <svg className="w-4 h-4 shrink-0 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-                                </button>
+                                </a>
                             </div>
                         </div>
                     );

@@ -18,18 +18,17 @@ export function AboutSection() {
             <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
                 {/* Left Column - Image Container */}
                 <Reveal direction="left" width="fit-content">
-                    <div className="w-full sm:w-[80%] mx-auto lg:mx-0 lg:w-[400px] flex-shrink-0">
-                        <div className="relative aspect-[4/5] w-full p-1 bg-gradient-to-br from-orange-500 to-red-500 rounded-3xl overflow-hidden shadow-[0_0_30px_rgba(249,115,22,0.3)]">
-                            <div className="w-full h-full bg-[#111] rounded-[20px] overflow-hidden relative">
-                                <Image
-                                    src="/PARTHA.jpeg"
-                                    alt="Partha"
-                                    fill
-                                    className="object-cover"
-                                    sizes="(max-width: 1024px) 80vw, 400px"
-                                    priority
-                                />
-                            </div>
+                    <div className="w-full sm:w-[80%] mx-auto lg:mx-0 lg:w-auto lg:max-w-md flex-shrink-0">
+                        <div className="w-full p-1 bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(249,115,22,0.3)]">
+                            <Image
+                                src="/PARTHA.png"
+                                alt="Partha"
+                                width={805}
+                                height={1024}
+                                className="w-full h-auto block rounded-xl"
+                                sizes="(max-width: 1024px) 100vw, 450px"
+                                priority
+                            />
                         </div>
                     </div>
                 </Reveal>

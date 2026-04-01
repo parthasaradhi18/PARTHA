@@ -6,19 +6,37 @@ import { ArrowRight, Mail } from "lucide-react";
 // Removed Image import to prevent crashes with empty placeholder
 
 export function ContactSection() {
-    const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+    const [formData, setFormData] = useState({ name: "", number: "", message: "" });
     const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+    const [errorMessage, setErrorMessage] = useState("");
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setStatus("loading");
+        setErrorMessage("");
 
-        // Since backend was removed, fallback to the user's local email client
-        window.location.href = `mailto:hello@maddelaparthasaradhi.in?subject=Website Contact from ${formData.name}&body=${encodeURIComponent(formData.message + '\n\nReply to: ' + formData.email)}`;
+        try {
+            const response = await fetch("http://localhost:5000/api/contact", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
 
-        // Show success UI
-        setStatus("success");
-        setFormData({ name: "", email: "", message: "" });
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || "Something went wrong. Please try again later.");
+            }
+
+            setStatus("success");
+            setFormData({ name: "", number: "", message: "" });
+        } catch (error: any) {
+            console.error(error);
+            setStatus("error");
+            setErrorMessage(error.message);
+        }
     };
 
     return (
@@ -88,14 +106,14 @@ export function ContactSection() {
                                 />
                             </div>
                             <div className="space-y-2">
-                                <label className="text-sm font-medium text-white/60 px-1">Email</label>
+                                <label className="text-sm font-medium text-white/60 px-1">Number</label>
                                 <input
-                                    type="email"
+                                    type="tel"
                                     required
-                                    value={formData.email}
-                                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                    value={formData.number}
+                                    onChange={(e) => setFormData({ ...formData, number: e.target.value })}
                                     className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white placeholder:text-white/20 focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:border-red-500/50 transition-all"
-                                    placeholder="john@example.com"
+                                    placeholder="+1 234 567 8900"
                                 />
                             </div>
                         </div>
@@ -112,6 +130,8 @@ export function ContactSection() {
                             />
                         </div>
 
+                        <p className="text-white/60 text-sm px-1">We will contact you via phone</p>
+
                         <div className="pt-4 flex flex-col md:flex-row items-center gap-6 justify-between">
                             <button
                                 type="submit"
@@ -124,15 +144,15 @@ export function ContactSection() {
 
                             <div className="flex items-center gap-3 text-white/60">
                                 <Mail className="w-5 h-5" />
-                                <span>hello@maddelaparthasaradhi.in</span>
+                                <span>pardhu.maddela103@gmail.com</span>
                             </div>
                         </div>
 
                         {status === "success" && (
-                            <p className="text-green-400 text-sm text-center pt-4">Message sent successfully! I&apos;ll get back to you soon.</p>
+                            <p className="text-green-400 text-sm text-center pt-4">Your message has been received successfully!</p>
                         )}
                         {status === "error" && (
-                            <p className="text-red-400 text-sm text-center pt-4">Something went wrong. Please try again later.</p>
+                            <p className="text-red-400 text-sm text-center pt-4">{errorMessage || "Something went wrong. Please try again later."}</p>
                         )}
                     </form>
                 </motion.div>

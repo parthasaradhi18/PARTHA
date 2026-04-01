@@ -44,7 +44,7 @@ export function HeroSection() {
 
                         <div className="group block md:block cursor-pointer relative h-7 w-7 sm:h-10 sm:w-10 md:h-12 md:w-12 lg:h-14 lg:w-14 shrink-0 rounded-full overflow-hidden border-2 border-white/20 my-0.5 sm:my-2 md:my-0 bg-[#111] flex items-center justify-center text-white/50 font-bold text-xs md:text-lg">
                             <Image
-                                src="/PARTHA.jpeg"
+                                src="/PARTHA.png"
                                 alt="Partha"
                                 fill
                                 className="object-cover"
