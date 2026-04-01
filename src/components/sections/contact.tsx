@@ -32,10 +32,10 @@ export function ContactSection() {
 
             setStatus("success");
             setFormData({ name: "", number: "", message: "" });
-        } catch (error: any) {
+        } catch (error) {
             console.error(error);
             setStatus("error");
-            setErrorMessage(error.message);
+            setErrorMessage(error instanceof Error ? error.message : "An unexpected error occurred.");
         }
     };
 
