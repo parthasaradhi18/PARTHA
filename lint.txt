@@ -1,0 +1,8 @@
+﻿E:\PROJECTS 1\PARTHA\src\components\sections\hero.tsx:5:10: 'ArrowRight' is defined but never used. [Error/@typescript-eslint/no-unused-vars]
+E:\PROJECTS 1\PARTHA\src\components\sections\hero.tsx:5:22: 'Mail' is defined but never used. [Error/@typescript-eslint/no-unused-vars]
+E:\PROJECTS 1\PARTHA\src\components\sections\hero.tsx:5:28: 'Phone' is defined but never used. [Error/@typescript-eslint/no-unused-vars]
+E:\PROJECTS 1\PARTHA\src\components\sections\hero.tsx:6:8: 'Link' is defined but never used. [Error/@typescript-eslint/no-unused-vars]
+E:\PROJECTS 1\PARTHA\src\components\sections\hero.tsx:7:8: 'Image' is defined but never used. [Error/@typescript-eslint/no-unused-vars]
+E:\PROJECTS 1\PARTHA\src\components\ui\animated-shader-hero.tsx:4:36: 'useState' is defined but never used. [Error/@typescript-eslint/no-unused-vars]
+
+6 problems

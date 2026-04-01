@@ -6,65 +6,75 @@ import { ArrowRight, Mail, Phone } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Reveal } from "@/components/ui/reveal";
+import { useShaderBackground } from "@/components/ui/animated-shader-hero";
 
 export function HeroSection() {
+    const canvasRef = useShaderBackground();
+
     return (
         <section
             id="home"
-            className="relative min-h-screen pt-40 md:pt-32 pb-20 flex items-center justify-center max-w-7xl mx-auto px-6 overflow-hidden"
+            className="relative min-h-screen pt-40 md:pt-32 pb-20 flex items-center justify-center w-full overflow-hidden bg-black"
         >
-            {/* Background overlay */}
-            <div className="absolute inset-0 z-0 bg-transparent opacity-[0.03] mix-blend-overlay" />
+            {/* Shader Background replacing the old overlay */}
+            <canvas
+                ref={canvasRef}
+                className="absolute inset-0 w-full h-full object-contain touch-none z-0"
+                style={{ background: 'black' }}
+            />
 
-            <div className="relative z-10 w-full max-w-5xl mx-auto text-center flex flex-col items-center">
-                {/* ===== Heading ===== */}
-                <Reveal direction="down">
-                    <div className="text-center mb-6 sm:mb-10 md:mb-12 lg:mb-16 xl:mb-10 px-1 sm:px-2">
-                        <h1 className="text-[1.75rem] sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl font-bold text-white leading-tight">
-                            Turning Ideas Into
-                            <br />
-                            beautiful{" "}
-                            <span className="italic font-normal text-transparent bg-clip-text bg-gradient-to-b from-zinc-600 to-white">
-                                Digital Experiences
-                            </span>
-                        </h1>
-                    </div>
-                </Reveal>
-
-                {/* ===== Intro Text ===== */}
-                <Reveal direction="up">
-                    <div className="flex relative flex-col items-center justify-center gap-1.5 sm:gap-3 md:flex-row mb-[88px] md:mb-24 scale-90 sm:scale-100">
-                        <p className="text-sm sm:text-lg md:text-xl lg:text-2xl text-white/90">Hello, I&apos;m</p>
-
-                        <div className="bg-red-600 px-3 sm:px-5 py-1 shadow-[0_0_20px_rgba(239,68,68,0.4)]">
-                            <span className="text-white font-semibold tracking-wide block text-xs sm:text-base">
-                                Maddela Partha Saradhi
-                            </span>
+            <div className="relative z-10 w-full max-w-7xl mx-auto px-6 flex flex-col items-center justify-center">
+                <div className="w-full max-w-5xl text-center flex flex-col items-center">
+                    {/* ===== Heading ===== */}
+                    <Reveal direction="down">
+                        <div className="text-center mb-6 sm:mb-10 md:mb-12 lg:mb-16 xl:mb-10 px-1 sm:px-2">
+                            <h1 className="text-[1.75rem] sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl font-bold text-white leading-tight">
+                                Turning Ideas Into
+                                <br />
+                                beautiful{" "}
+                                <span className="italic font-normal text-transparent bg-clip-text bg-gradient-to-b from-orange-400 to-white">
+                                    Digital Experiences
+                                </span>
+                            </h1>
                         </div>
+                    </Reveal>
 
-                        <div className="group block md:block cursor-pointer relative h-7 w-7 sm:h-10 sm:w-10 md:h-12 md:w-12 lg:h-14 lg:w-14 shrink-0 rounded-full overflow-hidden border-2 border-white/20 my-0.5 sm:my-2 md:my-0 bg-[#111] flex items-center justify-center text-white/50 font-bold text-xs md:text-lg">
-                            <Image
-                                src="/PARTHA.png"
-                                alt="Partha"
-                                fill
-                                className="object-cover"
-                                sizes="(max-width: 640px) 28px, (max-width: 768px) 40px, (max-width: 1024px) 48px, 56px"
-                                priority
-                            />
+                    {/* ===== Intro Text ===== */}
+                    <Reveal direction="up">
+                        <div className="flex relative flex-col items-center justify-center gap-1.5 sm:gap-3 md:flex-row mb-[88px] md:mb-24 scale-90 sm:scale-100">
+                            <p className="text-sm sm:text-lg md:text-xl lg:text-2xl text-white/90">Hello, I&apos;m</p>
+
+                            {/* Theme changed to orange (bg-orange-500, shadow orange) */}
+                            <div className="bg-orange-500 px-3 sm:px-5 py-1 shadow-[0_0_20px_rgba(249,115,22,0.4)] md:hover:scale-[1.05] transition-transform">
+                                <span className="text-white font-semibold tracking-wide block text-xs sm:text-base">
+                                    Maddela Partha Saradhi
+                                </span>
+                            </div>
+
+                            <div className="group block md:block cursor-pointer relative h-7 w-7 sm:h-10 sm:w-10 md:h-12 md:w-12 lg:h-14 lg:w-14 shrink-0 rounded-full overflow-hidden border-2 border-white/20 my-0.5 sm:my-2 md:my-0 bg-[#111] flex items-center justify-center text-white/50 font-bold text-xs md:text-lg">
+                                <Image
+                                    src="/PARTHA.png"
+                                    alt="Partha"
+                                    fill
+                                    className="object-cover"
+                                    sizes="(max-width: 640px) 28px, (max-width: 768px) 40px, (max-width: 1024px) 48px, 56px"
+                                    priority
+                                />
+                            </div>
+
+                            <p className="text-xs sm:text-base md:text-xl lg:text-2xl text-white/90">A Web Developer</p>
                         </div>
-
-                        <p className="text-xs sm:text-base md:text-xl lg:text-2xl text-white/90">A Web Developer</p>
-                    </div>
-                </Reveal>
+                    </Reveal>
+                </div>
             </div>
 
-            {/* ===== Bottom Dome ===== */}
+            {/* ===== Bottom Dome ===== Theme changed to orange */}
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 
                       w-[150%] md:w-[110%] 
                       h-[220px] md:h-[180px] 
                       bg-[#050505] rounded-t-[100%] 
-                      border-t border-red-500/20 
-                      shadow-[0_-30px_60px_rgba(239,68,68,0.05)] 
+                      border-t border-orange-500/20 
+                      shadow-[0_-30px_60px_rgba(249,115,22,0.05)] 
                       z-20 flex flex-col items-center pt-8 md:pt-12">
 
                 <motion.div
@@ -79,7 +89,7 @@ export function HeroSection() {
                         className="group flex flex-row items-center justify-between gap-4 bg-[#0a0a0a] border border-white/10 text-white pl-6 pr-2 py-2 rounded-full font-medium hover:bg-white/5 hover:border-white/20 transition-all duration-300 w-[240px] md:w-[220px]"
                     >
                         <span>Let&apos;s Connect</span>
-                        <div className="bg-white/10 p-2 rounded-full flex items-center justify-center group-hover:bg-red-600 group-hover:text-white transition-colors text-white/70">
+                        <div className="bg-white/10 p-2 rounded-full flex items-center justify-center group-hover:bg-orange-500 group-hover:text-white transition-colors text-white/70">
                             <ArrowRight className="w-4 h-4 md:w-4 md:h-4" />
                         </div>
                     </Link>

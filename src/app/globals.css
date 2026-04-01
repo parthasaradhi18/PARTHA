@@ -16,8 +16,8 @@
     --primary: 0 0% 100%;
     --primary-foreground: 0 0% 0%;
 
-    /* Accent color: #ef4444 (bold red glow) */
-    --secondary: 0 84% 60%;
+    /* Accent color: #f97316 (bold orange glow matching shader) */
+    --secondary: 24.6 95% 53.1%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 0 0% 15%;
@@ -31,7 +31,7 @@
 
     --border: 0 0% 15%;
     --input: 0 0% 15%;
-    --ring: 0 84% 60%;
+    --ring: 24.6 95% 53.1%;
 
     --radius: 0.75rem;
   }
@@ -44,8 +44,8 @@
 
   body {
     @apply bg-background text-foreground;
-    /* Custom premium dark gradient requested by user */
-    background: radial-gradient(125% 125% at 50% 100%, #000000 40%, #2b0707 100%);
+    /* Custom premium dark gradient requested by user, updated to orange/amber theme */
+    background: radial-gradient(125% 125% at 50% 100%, #000000 40%, #301700 100%);
     background-attachment: fixed;
     min-height: 100vh;
   }
@@ -64,9 +64,9 @@
 }
 
 .glass-card:hover {
-  border-color: rgba(239, 68, 68, 0.3);
-  /* Red glow effect */
-  box-shadow: 0 0 20px rgba(239, 68, 68, 0.1);
+  border-color: rgba(249, 115, 22, 0.3);
+  /* Orange glow effect */
+  box-shadow: 0 0 20px rgba(249, 115, 22, 0.1);
   transform: translateY(-2px);
 }
 
